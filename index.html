@@ -1,73 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ashi's Pink Progress Tracker</title>
+  <title>Progress Tracker </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
-    body{margin:0;padding:14px;font-family:Arial;background:linear-gradient(135deg,#ffe1ec,#fff8fb);color:#3b2430}
-    .box{max-width:1000px;margin:auto}
-    .card{background:white;border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 8px 25px #f3a6c5}
+    body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ffd6e8,#fff5fa);color:#3b2430;padding:15px}
+    .box{max-width:1100px;margin:auto}
+    .hero,.card{background:white;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 8px 25px rgba(214,51,132,.18)}
+    .hero{text-align:center}
     h1,h2{color:#d63384;margin:8px 0}
-    input,textarea{width:100%;padding:10px;margin:5px 0 9px;border-radius:10px;border:1px solid #f3a6c5}
+    input,textarea,select{width:100%;padding:11px;margin:6px 0 10px;border:1px solid #f3a6c5;border-radius:12px;background:#fffaff}
     textarea{height:70px}
-    button{background:#d63384;color:white;border:0;border-radius:12px;padding:10px 14px;font-weight:bold;margin:4px;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
-    .stat{background:#fff0f6;border-radius:14px;padding:12px;text-align:center}
+    button{background:#d63384;color:white;border:0;border-radius:14px;padding:11px 16px;font-weight:bold;margin:4px;cursor:pointer}
+    .danger{background:#7a1738}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+    .stat{background:#fff0f6;border-radius:16px;padding:12px;text-align:center}
     .num{font-size:24px;font-weight:bold;color:#d63384}
-    .bar{height:24px;background:#ffe3ec;border-radius:20px;overflow:hidden}
-    .fill{height:100%;width:0%;background:#d63384}
+    .bar{height:24px;background:#ffe3ec;border-radius:30px;overflow:hidden}
+    .fill{height:100%;width:0;background:#d63384}
     table{width:100%;border-collapse:collapse;font-size:13px}
-    th,td{border-bottom:1px solid #ffd1e3;padding:8px;text-align:left}
+    th,td{padding:8px;border-bottom:1px solid #ffd1e3;text-align:left;vertical-align:top}
     th{background:#ffd6e6}
-    .danger{background:#8b1e3f}
+    .tag{display:inline-block;background:#ffe3ec;padding:7px 10px;border-radius:20px;margin:3px;font-size:13px}
   </style>
 </head>
 
 <body>
 <div class="box">
 
-  <div class="card" style="text-align:center">
-    <h1>🌸 Ashi's Pink Progress Tracker 🌸</h1>
-    <p>Start: 71 kg | Goal: 55 kg | Daily progress report</p>
+  <div class="hero">
+    <h1>🌸 Ashi’s Pink Diet Diary 🌸</h1>
+    <p>Daily meals, cravings, weight, steps & progress tracker</p>
+    <span class="tag">Start: 71 kg</span>
+    <span class="tag">Goal: 55 kg</span>
+    <span class="tag">No guilt, only progress</span>
   </div>
 
   <div class="card">
-    <h2>Progress Report</h2>
+    <h2>📊 Progress Report</h2>
     <div class="bar"><div class="fill" id="fill"></div></div>
-
     <div class="grid">
       <div class="stat"><div class="num" id="current">--</div><p>Current</p></div>
       <div class="stat"><div class="num" id="lost">--</div><p>Lost</p></div>
       <div class="stat"><div class="num" id="left">--</div><p>Left</p></div>
       <div class="stat"><div class="num" id="count">0</div><p>Entries</p></div>
     </div>
-
-    <p id="report">Add your first entry.</p>
+    <p id="report">Add today’s entry to start.</p>
   </div>
 
   <div class="card">
-    <h2>Add Daily Entry</h2>
+    <h2>📝 Add Today’s Entry</h2>
 
     <div class="grid">
       <div><label>Date</label><input type="date" id="date"></div>
       <div><label>Weight kg</label><input type="number" step="0.1" id="weight"></div>
-      <div><label>Calories</label><input type="number" id="calories"></div>
+      <div><label>Mood</label>
+        <select id="mood">
+          <option>Good</option><option>Low</option><option>Stressed</option><option>PMS</option><option>Motivated</option>
+        </select>
+      </div>
+      <div><label>Calories approx</label><input type="number" id="calories"></div>
       <div><label>Protein g</label><input type="number" id="protein"></div>
       <div><label>Steps</label><input type="number" id="steps"></div>
       <div><label>Water glasses</label><input type="number" id="water"></div>
+      <div><label>Workout / Walk</label><input id="workout" placeholder="Example: 10k steps / gym / rest"></div>
     </div>
 
-    <label>Meals / Notes / Cravings</label>
-    <textarea id="notes"></textarea>
+    <label>🍳 Breakfast</label>
+    <textarea id="breakfast" placeholder="What did you eat?"></textarea>
 
-    <button onclick="saveEntry()">Save Entry 💕</button>
-    <button onclick="clearForm()">Clear</button>
+    <label>🥗 Lunch</label>
+    <textarea id="lunch" placeholder="What did you eat?"></textarea>
+
+    <label>☕ Evening Snack</label>
+    <textarea id="snack" placeholder="Snack / cravings / tea-time"></textarea>
+
+    <label>🌙 Dinner</label>
+    <textarea id="dinner" placeholder="What did you eat?"></textarea>
+
+    <label>🍫 Cravings / Cheat / Binge Notes</label>
+    <textarea id="cravings" placeholder="Write honestly. No judgement."></textarea>
+
+    <label>💭 Final Notes</label>
+    <textarea id="notes" placeholder="Energy, digestion, period, wins, mistakes..."></textarea>
+
+    <button onclick="saveEntry()">Save Today 💕</button>
+    <button onclick="clearForm()">Clear Form</button>
   </div>
 
   <div class="card">
-    <h2>Daily History</h2>
-    <div id="history"></div>
+    <h2>📅 Saved Daily Entries</h2>
+    <div id="history">No entries yet.</div>
     <button onclick="exportData()">Export Backup</button>
     <button class="danger" onclick="clearAll()">Delete All</button>
   </div>
@@ -75,118 +98,102 @@
 </div>
 
 <script>
-  const START = 71;
-  const GOAL = 55;
+const START=71, GOAL=55;
+document.getElementById("date").valueAsDate=new Date();
 
-  document.getElementById("date").valueAsDate = new Date();
+function getEntries(){return JSON.parse(localStorage.getItem("ashiDietDiary")||"[]")}
+function saveEntries(e){localStorage.setItem("ashiDietDiary",JSON.stringify(e))}
 
-  function getEntries(){
-    return JSON.parse(localStorage.getItem("entries") || "[]");
-  }
-
-  function saveEntries(entries){
-    localStorage.setItem("entries", JSON.stringify(entries));
-  }
-
-  function saveEntry(){
-    let entry = {
-      date: document.getElementById("date").value,
-      weight: Number(document.getElementById("weight").value),
-      calories: Number(document.getElementById("calories").value),
-      protein: Number(document.getElementById("protein").value),
-      steps: Number(document.getElementById("steps").value),
-      water: Number(document.getElementById("water").value),
-      notes: document.getElementById("notes").value
-    };
-
-    if(!entry.date || !entry.weight){
-      alert("Date and weight are required");
-      return;
-    }
-
-    let entries = getEntries();
-    let old = entries.findIndex(e => e.date === entry.date);
-
-    if(old >= 0){
-      entries[old] = entry;
-    } else {
-      entries.push(entry);
-    }
-
-    entries.sort((a,b) => new Date(b.date) - new Date(a.date));
-    saveEntries(entries);
-    clearForm();
-    render();
-    alert("Saved 💗");
-  }
-
-  function clearForm(){
-    document.getElementById("date").valueAsDate = new Date();
-    document.getElementById("weight").value = "";
-    document.getElementById("calories").value = "";
-    document.getElementById("protein").value = "";
-    document.getElementById("steps").value = "";
-    document.getElementById("water").value = "";
-    document.getElementById("notes").value = "";
-  }
-
-  function deleteEntry(date){
-    let entries = getEntries().filter(e => e.date !== date);
-    saveEntries(entries);
-    render();
-  }
-
-  function render(){
-    let entries = getEntries();
-    document.getElementById("count").innerText = entries.length;
-
-    if(entries.length === 0){
-      document.getElementById("history").innerHTML = "No entries yet.";
-      return;
-    }
-
-    let latest = entries[0];
-    let lost = START - latest.weight;
-    let left = latest.weight - GOAL;
-    let percent = Math.round((lost / (START - GOAL)) * 100);
-
-    if(percent < 0) percent = 0;
-    if(percent > 100) percent = 100;
-
-    document.getElementById("current").innerText = latest.weight + " kg";
-    document.getElementById("lost").innerText = lost.toFixed(1) + " kg";
-    document.getElementById("left").innerText = left.toFixed(1) + " kg";
-    document.getElementById("fill").style.width = percent + "%";
-    document.getElementById("report").innerText = percent + "% complete. You have " + left.toFixed(1) + " kg left.";
-
-    let html = "<table><tr><th>Date</th><th>Weight</th><th>Cal</th><th>Protein</th><th>Steps</th><th>Water</th><th>Notes</th><th></th></tr>";
-
-    entries.forEach(e => {
-      html += "<tr><td>" + e.date + "</td><td>" + e.weight + " kg</td><td>" + (e.calories||"-") + "</td><td>" + (e.protein||"-") + "</td><td>" + (e.steps||"-") + "</td><td>" + (e.water||"-") + "</td><td>" + (e.notes||"-") + "</td><td><button class='danger' onclick=\"deleteEntry('" + e.date + "')\">Delete</button></td></tr>";
-    });
-
-    html += "</table>";
-    document.getElementById("history").innerHTML = html;
-  }
-
-  function exportData(){
-    let data = JSON.stringify(getEntries(), null, 2);
-    let blob = new Blob([data], {type:"application/json"});
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "ashi-progress-backup.json";
-    link.click();
-  }
-
-  function clearAll(){
-    if(confirm("Delete all entries?")){
-      localStorage.removeItem("entries");
-      render();
-    }
-  }
-
+function saveEntry(){
+  let e={
+    date:date.value, weight:Number(weight.value), mood:mood.value,
+    calories:calories.value, protein:protein.value, steps:steps.value, water:water.value,
+    workout:workout.value, breakfast:breakfast.value, lunch:lunch.value, snack:snack.value,
+    dinner:dinner.value, cravings:cravings.value, notes:notes.value
+  };
+  if(!e.date||!e.weight){alert("Date and weight required");return}
+  let entries=getEntries();
+  let i=entries.findIndex(x=>x.date===e.date);
+  if(i>=0) entries[i]=e; else entries.push(e);
+  entries.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  saveEntries(entries);
   render();
-</script>
+  alert("Saved 💗");
+}
 
+function clearForm(){
+  document.querySelectorAll("input,textarea").forEach(x=>x.value="");
+  document.getElementById("date").valueAsDate=new Date();
+}
+
+function render(){
+  let entries=getEntries();
+  count.innerText=entries.length;
+  if(entries.length===0){history.innerHTML="No entries yet.";return}
+
+  let latest=entries[0];
+  let lost=START-latest.weight;
+  let left=latest.weight-GOAL;
+  let percent=Math.round((lost/(START-GOAL))*100);
+  if(percent<0)percent=0;if(percent>100)percent=100;
+
+  current.innerText=latest.weight+" kg";
+  lost.innerText=lost.toFixed(1)+" kg";
+  left.innerText=left.toFixed(1)+" kg";
+  fill.style.width=percent+"%";
+  report.innerText=percent+"% complete. "+left.toFixed(1)+" kg left to goal.";
+
+  let html="<table><tr><th>Date</th><th>Weight</th><th>Meals</th><th>Stats</th><th>Mood/Notes</th><th></th></tr>";
+  entries.forEach(e=>{
+    html+=`<tr>
+      <td>${e.date}</td>
+      <td>${e.weight} kg</td>
+      <td>
+        <b>Breakfast:</b> ${e.breakfast||"-"}<br>
+        <b>Lunch:</b> ${e.lunch||"-"}<br>
+        <b>Snack:</b> ${e.snack||"-"}<br>
+        <b>Dinner:</b> ${e.dinner||"-"}
+      </td>
+      <td>
+        Cal: ${e.calories||"-"}<br>
+        Protein: ${e.protein||"-"}g<br>
+        Steps: ${e.steps||"-"}<br>
+        Water: ${e.water||"-"}<br>
+        Workout: ${e.workout||"-"}
+      </td>
+      <td>
+        Mood: ${e.mood||"-"}<br>
+        Cravings: ${e.cravings||"-"}<br>
+        Notes: ${e.notes||"-"}
+      </td>
+      <td><button class="danger" onclick="deleteEntry('${e.date}')">Delete</button></td>
+    </tr>`;
+  });
+  html+="</table>";
+  history.innerHTML=html;
+}
+
+function deleteEntry(d){
+  saveEntries(getEntries().filter(e=>e.date!==d));
+  render();
+}
+
+function clearAll(){
+  if(confirm("Delete all entries?")){
+    localStorage.removeItem("ashiDietDiary");
+    render();
+  }
+}
+
+function exportData(){
+  let blob=new Blob([JSON.stringify(getEntries(),null,2)],{type:"application/json"});
+  let a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="ashi-diet-diary-backup.json";
+  a.click();
+}
+
+render();
+</script>
 </body>
 </html>
